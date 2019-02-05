@@ -6,6 +6,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
+    @article = Article.new
   end
 
   def create
@@ -24,14 +25,23 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     if @article.update(article_params)
+      flash.notice = "Article updated. Thanks, bro."
       redirect_to @article
     else
-      render 'edit'
+      flash.alert = "Couldn't update that article."
+      render "edit"
     end
   end
 
   def show
     @article = Article.find(params[:id])
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    flash.notice = "Article deleted. PEACE!"
+    redirect_to articles_path
   end
 
   protected
