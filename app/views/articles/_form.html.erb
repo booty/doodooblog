@@ -29,3 +29,11 @@
   </p>
 
 <% end %>
+
+<hr><hr><hr>
+
+<%= simple_form_for @article do |f| %>
+  <%= f.input :title %>
+  <%= f.input :text %>
+  <%= f.button :submit %>
+<% end %>
